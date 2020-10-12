@@ -25,9 +25,10 @@ namespace MoodTesting
             /// doesnt give sad and get happy.
             /// </summary>
             /// <param name="message">The message.</param>
-            [DataRow("I am in angry mood")]
+
+            [DataRow("I am in Angry mood")]
             [TestMethod]
-            public void GiveHappyAndGetHappy(string message)
+            public void GiveAngryAndGetHappy(string message)
             {
                 //Arrange
               MoodAnalyser  moodAnalyser = new MoodAnalyser(message);
@@ -36,5 +37,19 @@ namespace MoodTesting
                 //Assert
                 Assert.AreEqual("HAPPY", actual);
             }
+        [DataRow(null)]
+        [TestMethod]
+        public void GiveNullAndGetHappy(string message)
+        {
+            //Arrange
+            MoodAnalyser moodAnalyser = new MoodAnalyser(message);
+            //Act
+            var actual = moodAnalyser.AnalyseMood();
+            //Assert
+            Assert.AreEqual("HAPPY", actual);
         }
+
+
+
+    }
 }
