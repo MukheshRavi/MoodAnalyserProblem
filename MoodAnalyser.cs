@@ -27,14 +27,29 @@ namespace MoodAnalyserProblem
                 if (message.ToLower().Contains("sad"))
                     return "SAD";
                 else
+                    if (message.Equals(" "))
+                    throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.EMPTY_MESSAGE);
+
+                else if (message.Equals(null))
+                    throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.NULL_MESSAGE);
+                else
                     return "HAPPY";
             }
-            catch (NullReferenceException)
+            catch(NullReferenceException )
             {
-                return "HAPPY";
-
+                return "Mood should not be Null" ;
             }
+            catch (MoodAnalyserCustomException)
+            {
+                return "Mood should not be Empty";
+            }
+
             
             }
-  }
-}
+           
+            }
+           
+            
+            }
+  
+

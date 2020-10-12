@@ -44,9 +44,20 @@ namespace MoodTesting
             //Arrange
             MoodAnalyser moodAnalyser = new MoodAnalyser(message);
             //Act
+            var actual = moodAnalyser.AnalyseMood(); 
+            //Assert
+             Assert.AreEqual("Mood should not be Null", actual); 
+        }
+        [DataRow(" ")]
+        [TestMethod]
+        public void GiveEmptyAndGetHappy(string message)
+        {
+            //Arrange
+            MoodAnalyser moodAnalyser = new MoodAnalyser(message);
+            //Act
             var actual = moodAnalyser.AnalyseMood();
             //Assert
-            Assert.AreEqual("HAPPY", actual);
+            Assert.AreEqual("Mood should not be Empty", actual);
         }
 
 
