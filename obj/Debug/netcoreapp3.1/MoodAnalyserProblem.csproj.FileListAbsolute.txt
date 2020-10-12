@@ -1,0 +1,13 @@
+C:\Users\MUKHESH\source\repos\MoodAnalyserProblem\bin\Debug\netcoreapp3.1\MoodAnalyserProblem.exe
+C:\Users\MUKHESH\source\repos\MoodAnalyserProblem\bin\Debug\netcoreapp3.1\MoodAnalyserProblem.deps.json
+C:\Users\MUKHESH\source\repos\MoodAnalyserProblem\bin\Debug\netcoreapp3.1\MoodAnalyserProblem.runtimeconfig.json
+C:\Users\MUKHESH\source\repos\MoodAnalyserProblem\bin\Debug\netcoreapp3.1\MoodAnalyserProblem.runtimeconfig.dev.json
+C:\Users\MUKHESH\source\repos\MoodAnalyserProblem\bin\Debug\netcoreapp3.1\MoodAnalyserProblem.dll
+C:\Users\MUKHESH\source\repos\MoodAnalyserProblem\bin\Debug\netcoreapp3.1\MoodAnalyserProblem.pdb
+C:\Users\MUKHESH\source\repos\MoodAnalyserProblem\obj\Debug\netcoreapp3.1\MoodAnalyserProblem.csprojAssemblyReference.cache
+C:\Users\MUKHESH\source\repos\MoodAnalyserProblem\obj\Debug\netcoreapp3.1\MoodAnalyserProblem.AssemblyInfoInputs.cache
+C:\Users\MUKHESH\source\repos\MoodAnalyserProblem\obj\Debug\netcoreapp3.1\MoodAnalyserProblem.AssemblyInfo.cs
+C:\Users\MUKHESH\source\repos\MoodAnalyserProblem\obj\Debug\netcoreapp3.1\MoodAnalyserProblem.csproj.CoreCompileInputs.cache
+C:\Users\MUKHESH\source\repos\MoodAnalyserProblem\obj\Debug\netcoreapp3.1\MoodAnalyserProblem.dll
+C:\Users\MUKHESH\source\repos\MoodAnalyserProblem\obj\Debug\netcoreapp3.1\MoodAnalyserProblem.pdb
+C:\Users\MUKHESH\source\repos\MoodAnalyserProblem\obj\Debug\netcoreapp3.1\MoodAnalyserProblem.genruntimeconfig.cache
