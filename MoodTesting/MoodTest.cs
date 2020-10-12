@@ -25,6 +25,7 @@ namespace MoodTesting
             /// doesnt give sad and get happy.
             /// </summary>
             /// <param name="message">The message.</param>
+
             [DataRow("I am in Angry mood")]
             [TestMethod]
             public void GiveAngryAndGetHappy(string message)
