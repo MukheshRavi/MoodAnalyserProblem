@@ -8,7 +8,7 @@ namespace MoodAnalyserProblem
         //Refactor code to add constuctor
         public MoodAnalyser(string message)
         {
-            this.message = message.ToLower();
+            this.message = message;
         }
         static void Main(string[] args)
         {
@@ -23,13 +23,18 @@ namespace MoodAnalyserProblem
         /// <returns></returns>
         public string AnalyseMood()
         {
-            if (message.Contains("sad"))
-                return "SAD";
-            else
+            try {
+                if (message.ToLower().Contains("sad"))
+                    return "SAD";
+                else
+                    return "HAPPY";
+            }
+            catch (NullReferenceException)
+            {
                 return "HAPPY";
-        }
 
-
-
-    }
+            }
+            
+            }
+  }
 }
