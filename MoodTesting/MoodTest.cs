@@ -9,14 +9,14 @@ namespace MoodTesting
             /// <summary>
             /// Tests the analyse mood method by giving sad and expecting sad
             /// </summary>
-            [DataRow("Iam in sad mood")]
+            [DataRow("I am in sad mood")]
             [TestMethod]
             public void GiveSadAndGetSad(string message)
             {
                 //Arrange
-            MoodAnalyser    moodAnalyser = new MoodAnalyser();
+            MoodAnalyser    moodAnalyser = new MoodAnalyser(message);
                 //Act
-                var actual = moodAnalyser.AnalyseMood(message);
+                var actual = moodAnalyser.AnalyseMood();
                 //Assert
                 Assert.AreEqual("SAD", actual);
             }
@@ -25,14 +25,14 @@ namespace MoodTesting
             /// doesnt give sad and get happy.
             /// </summary>
             /// <param name="message">The message.</param>
-            [DataRow("Iam in happy mood")]
+            [DataRow("I am in angry mood")]
             [TestMethod]
             public void GiveHappyAndGetHappy(string message)
             {
                 //Arrange
-              MoodAnalyser  moodAnalyser = new MoodAnalyser();
+              MoodAnalyser  moodAnalyser = new MoodAnalyser(message);
                 //Act
-                var actual = moodAnalyser.AnalyseMood(message);
+                var actual = moodAnalyser.AnalyseMood();
                 //Assert
                 Assert.AreEqual("HAPPY", actual);
             }
