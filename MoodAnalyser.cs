@@ -19,9 +19,10 @@ namespace MoodAnalyserProblem
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Mood Analyser Problem");
-            object noParameter = MoodAnalyserFactory.CreateMoodAnalyserObject(" MoodAnalyserProblem.MoodAnalyser", " MoodAnalyser");
+            object noParameter = MoodAnalyserFactory.CreateMoodAnalyserObject(" MoodAnalyserProblem.MoodAnalyser", "MoodAnalyser");
 
-            object withParameter = MoodAnalyserFactory.CreateMoodAnalyserParameterisedObject(" MoodAnalyserProblem.MoodAnalyser", " MoodAnalyser","i am happy");
+            object withParameter = MoodAnalyserFactory.CreateMoodAnalyserParameterisedObject(" MoodAnalyserProblem.MoodAnalyser", 
+                "MoodAnalyser","i am happy");
 
 
         }

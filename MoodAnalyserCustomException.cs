@@ -11,7 +11,8 @@ namespace MoodAnalyserProblem
             EMPTY_MESSAGE,
             NULL_MESSAGE,
             NO_SUCH_CLASS,
-            NO_SUCH_CONSTRUCTOR
+            NO_SUCH_CONSTRUCTOR,
+            NO_SUCH_METHOD
         }
         public readonly ExceptionType type;
 

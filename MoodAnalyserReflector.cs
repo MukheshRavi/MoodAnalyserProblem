@@ -39,7 +39,7 @@ namespace MoodAnalyserProblem
                 if (type.Name.Equals(constructor))
                 {
                     ConstructorInfo construct = type.GetConstructor(new[] { typeof(string) });
-                    Object obj = construct.Invoke(new object[] { message });
+                    Object obj = construct.Invoke(new object[] { message});
                     return obj;
                 }
                 else
@@ -49,7 +49,23 @@ namespace MoodAnalyserProblem
                 throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.NO_SUCH_CLASS, "class not found");
         }
 
+        public static string InvokeAnalyseMoodMethod(string message, string methodName)
+        {
+            try
+            {
+                Type type = typeof(MoodAnalyser);
+                MethodInfo methodInfo = type.GetMethod(methodName);
+                object moodAnalyser = MoodAnalyserFactory.CreateMoodAnalyserParameterisedObject("MoodAnalyserProblem.MoodAnalyser", 
+                    "MoodAnalyser", message);
+                object method = methodInfo.Invoke(moodAnalyser, null);
+                return method.ToString();
+            }
+            catch(NullReferenceException)
+            {
+                throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.NO_SUCH_METHOD, "Method not found");
+            }
 
+        }
 
 
 
