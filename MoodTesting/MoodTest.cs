@@ -58,7 +58,17 @@ namespace MoodTesting
             //Assert
             Assert.AreEqual("Mood should not be Empty", actual);
         }
-
+       
+        [TestMethod]
+        public void TestMoodAnalyserObject()
+        {
+            //Arrange
+            object expected = new MoodAnalyser();
+            //Act
+            object actual = MoodAnalyserFactory.CreateMoodAnalyserObject("MoodAnalyserProblem.MoodAnalyser"," MoodAnalyser");
+            //Assert
+            expected.Equals(actual);
+        }
 
 
     }

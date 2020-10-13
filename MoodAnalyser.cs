@@ -6,16 +6,23 @@ namespace MoodAnalyserProblem
     {
         public string message;
         //Refactor code to add constuctor
-        public MoodAnalyser(string message)
+       
+        public MoodAnalyser()
+        {
+            Console.WriteLine("Default Constructor");
+        }
+           public MoodAnalyser(string message)
         {
             this.message = message;
+            Console.WriteLine("Paramterised constructor");
         }
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Mood Analyser Problem");
-            new MoodAnalyser("i am in sad mood");
-           
-           
+            //new MoodAnalyser("i am in sad mood");
+            object actual = MoodAnalyserFactory.CreateMoodAnalyserObject(" MoodAnalyserProblem.MoodAnalyser", " MoodAnalyser");
+
+
         }
         /// <summary>
         /// method to analyse mood
@@ -28,10 +35,10 @@ namespace MoodAnalyserProblem
                     return "SAD";
                 else
                     if (message.Equals(" "))
-                    throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.EMPTY_MESSAGE);
+                    throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.EMPTY_MESSAGE, "Mood should not be Empty");
 
                 else if (message.Equals(null))
-                    throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.NULL_MESSAGE);
+                    throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.NULL_MESSAGE, "Mood should not be Null");
                 else
                     return "HAPPY";
             }
