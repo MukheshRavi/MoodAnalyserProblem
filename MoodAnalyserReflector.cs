@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace MoodAnalyserProblem
 {
-    public class MoodAnalyserFactory
+    public class MoodAnalyserReflector
     {
         public static object CreateMoodAnalyserObject(string className, string constructor)
         {
@@ -39,7 +39,7 @@ namespace MoodAnalyserProblem
                 if (type.Name.Equals(constructor))
                 {
                     ConstructorInfo construct = type.GetConstructor(new[] { typeof(string) });
-                    Object obj = construct.Invoke(new object[] { message});
+                    Object obj = construct.Invoke(new object[] { message });
                     return obj;
                 }
                 else
@@ -55,20 +55,32 @@ namespace MoodAnalyserProblem
             {
                 Type type = typeof(MoodAnalyser);
                 MethodInfo methodInfo = type.GetMethod(methodName);
-                object moodAnalyser = MoodAnalyserFactory.CreateMoodAnalyserParameterisedObject("MoodAnalyserProblem.MoodAnalyser", 
+                object moodAnalyser = MoodAnalyserReflector.CreateMoodAnalyserParameterisedObject("MoodAnalyserProblem.MoodAnalyser",
                     "MoodAnalyser", message);
                 object method = methodInfo.Invoke(moodAnalyser, null);
                 return method.ToString();
             }
-            catch(NullReferenceException)
+            catch (NullReferenceException)
             {
                 throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.NO_SUCH_METHOD, "Method not found");
             }
 
         }
 
+        public static object GetFieldChangeMoodDynamically(string fieldName, string message)
+        {
+            try
+            {
+                Type type = typeof(MoodAnalyser);
+                FieldInfo fieldInfo = type.GetField(fieldName);
+                fieldInfo.SetValue(new MoodAnalyser(), message);
+                return CreateMoodAnalyserParameterisedObject(type.FullName, type.Name, message);
 
-
-
+            }
+            catch (Exception)
+            {
+                throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.NO_SUCH_FIELD, "Field not found");
+            }
+        }
     }
 }
