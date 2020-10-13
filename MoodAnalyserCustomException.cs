@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MoodAnalyserProblem
 {
-    class MoodAnalyserCustomException :Exception
+   class MoodAnalyserCustomException :Exception
     {
         public enum ExceptionType
         {

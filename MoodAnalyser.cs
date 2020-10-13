@@ -7,11 +7,11 @@ namespace MoodAnalyserProblem
         public string message;
         //Refactor code to add constuctor
        
-        public MoodAnalyser()
+       public  MoodAnalyser()
         {
             Console.WriteLine("Default Constructor");
         }
-           public MoodAnalyser(string message)
+          public  MoodAnalyser(string message)
         {
             this.message = message;
             Console.WriteLine("Paramterised constructor");
@@ -19,8 +19,9 @@ namespace MoodAnalyserProblem
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Mood Analyser Problem");
-            //new MoodAnalyser("i am in sad mood");
-            object actual = MoodAnalyserFactory.CreateMoodAnalyserObject(" MoodAnalyserProblem.MoodAnalyser", " MoodAnalyser");
+            object noParameter = MoodAnalyserFactory.CreateMoodAnalyserObject(" MoodAnalyserProblem.MoodAnalyser", " MoodAnalyser");
+
+            object withParameter = MoodAnalyserFactory.CreateMoodAnalyserParameterisedObject(" MoodAnalyserProblem.MoodAnalyser", " MoodAnalyser","i am happy");
 
 
         }

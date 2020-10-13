@@ -66,11 +66,20 @@ namespace MoodTesting
             //Arrange
             object expected = new MoodAnalyser();
             //Act
-            object actual = MoodAnalyserFactory.CreateMoodAnalyserObject("MoodAnalyserProblem.MoodAnalyser"," MoodAnalyser");
+            object actual = MoodAnalyserFactory.CreateMoodAnalyserObject("MoodAnalyserProblem.MoodAnalyser","MoodAnalyser");
             //Assert
             expected.Equals(actual);
         }
 
-
+        [TestMethod]
+        public void TestMoodAnalyserParameterisedObject()
+        {
+            //Arrange
+            object expected = new MoodAnalyser();
+            //Act
+            object actual = MoodAnalyserFactory.CreateMoodAnalyserParameterisedObject("MoodAnalyserProblem.MoodAnalyser", "MoodAnalyser","i am Happy");
+            //Assert
+            expected.Equals(actual);
+        }
     }
 }
