@@ -33,6 +33,7 @@ namespace MoodAnalyserProblem
         public string AnalyseMood()
         {
             try {
+
                 if (message.ToLower().Contains("sad"))
                     return "SAD";
                 else
@@ -46,17 +47,13 @@ namespace MoodAnalyserProblem
             }
             catch(NullReferenceException )
             {
-                return "Mood should not be Null" ;
+                throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.NULL_MESSAGE, "Mood should not be Null");
             }
-            catch (MoodAnalyserCustomException)
-            {
-                return "Mood should not be Empty";
-            }
-
+          
             
-            }
+        }
        
-    }
+   }
 
 }
            

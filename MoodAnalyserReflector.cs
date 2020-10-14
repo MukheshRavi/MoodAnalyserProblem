@@ -67,20 +67,28 @@ namespace MoodAnalyserProblem
 
         }
 
-        public static object GetFieldChangeMoodDynamically(string fieldName, string message)
+        public static string GetFieldChangeMoodDynamically(string fieldName, string message)
         {
             try
             {
                 Type type = typeof(MoodAnalyser);
                 FieldInfo fieldInfo = type.GetField(fieldName);
                 fieldInfo.SetValue(new MoodAnalyser(), message);
-                return CreateMoodAnalyserParameterisedObject(type.FullName, type.Name, message);
-
+                return InvokeAnalyseMoodMethod(message, "AnalyseMood");
+              
+            
             }
-            catch (Exception)
+            
+            catch (NullReferenceException)
             {
                 throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.NO_SUCH_FIELD, "Field not found");
             }
+            catch
+            {
+                throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.NULL_MESSAGE, "Mood should not be Null");
+            }
+
+
         }
     }
 }
