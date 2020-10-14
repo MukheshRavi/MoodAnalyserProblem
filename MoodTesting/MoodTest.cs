@@ -36,27 +36,37 @@ namespace MoodTesting
                 //Assert
                 Assert.AreEqual("HAPPY", actual);
             }
+        //To check the Exception When Null message is given
         [DataRow(null)]
         [TestMethod]
         public void GiveNullAndGetHappy(string message)
         {
-            //Arrange
-            MoodAnalyser moodAnalyser = new MoodAnalyser(message);
-            //Act
-            var actual = moodAnalyser.AnalyseMood(); 
-            //Assert
-             Assert.AreEqual("Mood should not be Null", actual); 
+            try
+            {  //Arrange
+                MoodAnalyser moodAnalyser = new MoodAnalyser(message);
+                //Act
+                var actual = moodAnalyser.AnalyseMood();
+            }
+            catch (System.Exception e)
+            {  //Assert
+                Assert.AreEqual("Mood should not be Null", e.Message);
+            }
         }
+        //To check the exception When empty message is given
         [DataRow(" ")]
         [TestMethod]
         public void GiveEmptyAndGetHappy(string message)
         {
-            //Arrange
-            MoodAnalyser moodAnalyser = new MoodAnalyser(message);
-            //Act
-            var actual = moodAnalyser.AnalyseMood();
-            //Assert
-            Assert.AreEqual("Mood should not be Empty", actual);
+            try
+            { //Arrange
+                MoodAnalyser moodAnalyser = new MoodAnalyser(message);
+                //Act
+                var actual = moodAnalyser.AnalyseMood();
+            }
+            catch (System.Exception e)
+            {  //Assert
+                Assert.AreEqual("Mood should not be Empty", e.Message);
+            }
         }
        //created object for default constructor
         [TestMethod]
@@ -99,12 +109,15 @@ namespace MoodTesting
         [TestMethod]
         public void TestInvokeInvalidMethod()
         {
-            //Arrange
-            string expected = new MoodAnalyser("i am happy").AnalyseMood();
-            //Act
-            string actual = MoodAnalyserReflector.InvokeAnalyseMoodMethod("i am happy", "InvalidMethod");
-            //Assert
-            expected.Equals(actual);
+            try
+            {
+                //Act
+                string actual = MoodAnalyserReflector.InvokeAnalyseMoodMethod("i am happy", "InvalidMethod")
+            }
+            catch(System.Exception e)
+            {
+                Assert.AreEqual("Method not found", e.Message);
+            }
         }
         /// <summary>
         /// To get and set the field
@@ -113,23 +126,40 @@ namespace MoodTesting
         public void TestGetFieldMethod()
         {
             //Arrange
-            object expected = new MoodAnalyser("i am happy").AnalyseMood();
+            string expected = new MoodAnalyser("i am happy").AnalyseMood();
             //Act
             //first parameter-------Field Name , second parameter------New message
-            object actual = MoodAnalyserReflector.GetFieldChangeMoodDynamically("message", "i am happy");
+            string actual = MoodAnalyserReflector.GetFieldChangeMoodDynamically("message","i am happy");
             //Assert
             expected.Equals(actual);
         }
+        //To check the exception when Null message is given
+        [TestMethod]
+        public void TestGetFieldMethodGivenNullMessage()
+        {
+            try
+            {
+                //First parameter-------Field Name , second parameter------New message
+                string actual = MoodAnalyserReflector.GetFieldChangeMoodDynamically("message", null);
+            }
+            catch (System.Exception e)
+            {
+                Assert.AreEqual("Mood should not be Null", e.Message);
+            }
+        }
+        //To check the exception when improper field is given  
         [TestMethod]
         public void TestGiveImproperFieldMethod()
         {
-            //Arrange
-            object expected = new MoodAnalyser("i am happy").AnalyseMood();
-            //Act
-            //first parameter-------Field Name , second parameter------New message
-            object actual = MoodAnalyserReflector.GetFieldChangeMoodDynamically("ImproperField", "i am happy");
-            //Assert
-            expected.Equals(actual);
+            try
+            {
+                //First parameter-------Field Name , second parameter------New message
+                string actual = MoodAnalyserReflector.GetFieldChangeMoodDynamically("ImproperField", "i am happy");
+            }
+            catch (System.Exception e)
+            {//Assert
+                Assert.AreEqual("Field not found", e.Message);
+            }
         }
 
     }
