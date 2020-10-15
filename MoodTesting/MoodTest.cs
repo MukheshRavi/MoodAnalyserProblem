@@ -68,7 +68,7 @@ namespace MoodTesting
                 Assert.AreEqual("Mood should not be Empty", e.Message);
             }
         }
-       //created object for default constructor
+       //created object for  constructor
         [TestMethod]
         public void TestMoodAnalyserObject()
         {
@@ -79,7 +79,18 @@ namespace MoodTesting
             //Assert
             expected.Equals(actual);
         }
-        //Created object for parameterised constructor
+        //Created object for Default constructo and parameterised constructor based on message
+        [TestMethod]
+        public void TestMoodAnalyserDefaultMessageObject()
+        {
+            //Arrange
+            object expected = new MoodAnalyser("i am happy");
+            //Act
+            object actual = MoodAnalyserReflector.CreateMoodAnalyserDefaultMessageObject("MoodAnalyserProblem.MoodAnalyser", "MoodAnalyser","i am happy");
+            //Assert
+            expected.Equals(actual);
+        }
+      //Created object for parameterised constructor
         [TestMethod]
         public void TestMoodAnalyserParameterisedObject()
         {
@@ -112,7 +123,7 @@ namespace MoodTesting
             try
             {
                 //Act
-                string actual = MoodAnalyserReflector.InvokeAnalyseMoodMethod("i am happy", "InvalidMethod")
+                string actual = MoodAnalyserReflector.InvokeAnalyseMoodMethod("i am happy", "InvalidMethod");
             }
             catch(System.Exception e)
             {
