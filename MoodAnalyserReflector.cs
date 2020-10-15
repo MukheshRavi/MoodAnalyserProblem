@@ -9,11 +9,11 @@ namespace MoodAnalyserProblem
     public class MoodAnalyserReflector
     {
         public static object CreateMoodAnalyserObject(string className, string constructor)
-        {
+        {//creating regex pattern to compare className and Constructor else it raises exception
             string pattern = @"." + constructor + "$";
             var result = Regex.Match(className, pattern);
             if (result.Success)
-            {
+            {//If it matches it will create object else raises exception
                 try
                 {
                     Assembly assembly = Assembly.GetExecutingAssembly();
@@ -32,10 +32,12 @@ namespace MoodAnalyserProblem
             }
         }
         public static object CreateMoodAnalyserParameterisedObject(string className, string constructor, string message)
-        {
+        { // getting the type of class MoodAnalyser
             Type type = typeof(MoodAnalyser);
+            // cheks if the class name exists in given assembly else throw exception
             if (type.Name.Equals(className) || type.FullName.Equals(className))
             {
+                // checks if the constructor passed is correct then create object else throw Exception
                 if (type.Name.Equals(constructor))
                 {
                     ConstructorInfo construct = type.GetConstructor(new[] { typeof(string) });
@@ -48,12 +50,42 @@ namespace MoodAnalyserProblem
             else
                 throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.NO_SUCH_CLASS, "class not found");
         }
+        public static Object CreateMoodAnalyserDefaultMessageObject(string className, string constructor, string message = "Default")
+        {
+            // getting the type of class MoodAnalyser
+            Type type = typeof(MoodAnalyser);
+
+            // cheks if the class name exists in given assembly else throw exception
+            if (type.Name.Equals(className) || type.FullName.Equals(className))
+            {
+                // checks if the constructor passed is correct then create object else throw Exception
+                if (type.Name.Equals(constructor))
+                {
+                    if (message == "Default")
+                        //Activate Default Constructor
+                        return Activator.CreateInstance(type);
+                    else
+                        //Activate Parameterised Constructor
+                        return Activator.CreateInstance(type, message);
+                }
+                else
+                {
+                    throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.NO_SUCH_CONSTRUCTOR, "No such constructor found");
+                }
+            }
+            else
+            {
+                throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.NO_SUCH_CLASS, "No such class found");
+            }
+        }
+
 
         public static string InvokeAnalyseMoodMethod(string message, string methodName)
-        {
+        { // getting the type of class MoodAnalyser
             try
             {
                 Type type = typeof(MoodAnalyser);
+                // getting the method information  present in class MoodAnalyser else raises exception
                 MethodInfo methodInfo = type.GetMethod(methodName);
                 object moodAnalyser = MoodAnalyserReflector.CreateMoodAnalyserParameterisedObject("MoodAnalyserProblem.MoodAnalyser",
                     "MoodAnalyser", message);
@@ -68,10 +100,11 @@ namespace MoodAnalyserProblem
         }
 
         public static string GetFieldChangeMoodDynamically(string fieldName, string message)
-        {
+        {// getting the type of class MoodAnalyser
             try
             {
                 Type type = typeof(MoodAnalyser);
+                // getting the field information  present in class MoodAnalyser else raises exception
                 FieldInfo fieldInfo = type.GetField(fieldName);
                 fieldInfo.SetValue(new MoodAnalyser(), message);
                 return InvokeAnalyseMoodMethod(message, "AnalyseMood");
